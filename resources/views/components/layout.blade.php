@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
     <nav>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/contact">Contact</a>
+        <x-nav-link href="/">Home</x-nav-link>
+        <x-nav-link href="/about">About</x-nav-link>
+        <x-nav-link href="/contact">Contact</x-nav-link>
     </nav>
-    <?php echo $slot ?>
-
+    {{ $slot }}
+    <p>test text</p>
 </body>
 </html>
