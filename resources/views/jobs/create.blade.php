@@ -17,6 +17,9 @@
               <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                 <input type="text" name="title" id="title" class="block pl-4 flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Shift Supervisor" required>
               </div>
+              @error('title')
+                     <p class="text-xs text-red-500 font-semibod mt-1">{{ $message }}</p>
+              @enderror
             </div>
           </div>
         </div>
@@ -28,20 +31,23 @@
                 <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                   <input type="text" name="salary" id="salary" class="block pl-4 flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="$50,000 per year" required>
                 </div>
+                @error('salary')
+                     <p class="text-xs text-red-500 font-semibod mt-1">{{ $message }}</p>
+                @enderror
               </div>
             </div>
           </div>
       </div>
     </div>
-    <div class="mt-10">
+    {{-- <div class="mt-10">
       @if($errors->any())
         <ul>
           @foreach ($errors->all() as $error)
-            <li class="text-red-500">{{ $error }}</li>
+            <li class="text-red-500 italic">{{ $error }}</li>
           @endforeach
         </ul>
       @endif
-    </div>
+    </div> --}}
 
   
     <div class="mt-6 flex items-center justify-end gap-x-6">
