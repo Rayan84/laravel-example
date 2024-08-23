@@ -45,9 +45,9 @@ Route::post('/jobs', function () {
 });
 
  Route::get('/jobs/{id}/edit', function($id) {
-    $job = Job::find(id);
+    $job = Job::find($id);
 
-    return view('edit');
+    return view('jobs.edit', ['job' => $job]);
  });
 
 Route::get('/contact', function () {
