@@ -44,6 +44,12 @@ Route::post('/jobs', function () {
 
 });
 
+ Route::get('/jobs/{id}/edit', function($id) {
+    $job = Job::find(id);
+
+    return view('edit');
+ });
+
 Route::get('/contact', function () {
     return view('contact');
 });
