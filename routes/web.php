@@ -2,11 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Job;
+use App\Http\Controllers;
 
-Route::get('/', function () {
-   return view('home');
-});
+//Homepage
+Route::get('/', [App\Http\Controllers\JobController::class, 'index']);
 
+//Jobs index
 Route::get('/jobs', function () {
     $jobs = Job::with('employer')->latest()->simplePaginate(3);
 
@@ -15,17 +16,19 @@ Route::get('/jobs', function () {
     ]);
 });
 
+// create
 Route::get('/jobs/create', function () {
      return view('jobs.create');
 });
 
-
-Route::get('/jobs/{id}', function ($id) {
-    $job = Job::find($id);
+// show
+Route::get('/jobs/{job}', function (Job $job) {
+    // $job = Job::find($id);
 
     return view('jobs.show', ['job' => $job]);
 });
 
+//Save a job
 Route::post('/jobs', function () {
     // Validation
     request()->validate([
@@ -43,14 +46,14 @@ Route::post('/jobs', function () {
    // dd(request('title'));
 
 });
-
- Route::get('/jobs/{id}/edit', function($id) {
-    $job = Job::find($id);
-
+   // edit a job
+ Route::get('/jobs/{job}/edit', function(Job $job) {
     return view('jobs.edit', ['job' => $job]);
  });
 
- Route::patch('/jobs/{id}', function ($id) {
+   // update
+ Route::patch('/jobs/{job}', function (Job $job) {
+    //authorize
     //validate
     request()->validate([
         'title' => ['required', 'min:3'],
@@ -58,7 +61,7 @@ Route::post('/jobs', function () {
     ]);
 
     // update
-    $job = Job::findOrFail($id);
+    //$job = Job::findOrFail($id);
     // $job->salary = request('salary');
     // $job->title = request('title');
     // $job->save();
@@ -66,15 +69,15 @@ Route::post('/jobs', function () {
         'title'=> request('title'),
         'salary' => request('salary')
     ]);
-    //authorize
+    
     //redirect
     return redirect('/jobs/' .$job->id);
  });
 
- Route::delete('jobs/{id}', function ($id) {
+ Route::delete('jobs/{job}', function (Job $job) {
     //authorize
     //delete
-    $job = Job::findOrFail($id);
+   // $job = Job::findOrFail($id);
     $job->delete();
     //redirect
     return redirect('/jobs');
