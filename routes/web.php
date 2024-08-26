@@ -7,3 +7,6 @@ Route::view('/', 'home');
 Route::resource('jobs', JobController::class);
 
 Route::view('/contact', 'contact'); 
+
+// Auth
+Route::get('/register', [RegisterController::class, 'create']);
