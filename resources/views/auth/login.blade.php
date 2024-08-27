@@ -2,7 +2,7 @@
     <x-slot:heading>
       Register
     </x-slot:heading>
-    <form method="POST" action="/jobs">
+    <form method="POST" action="/login">
       @csrf
       
   
